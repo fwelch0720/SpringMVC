@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+
+	<div class="container">
+		<h1>Post</h1>
+<a href="/posts/create" class="btn btn-primary">Go New Post</a>
+		<div class="row" th:each="post:${timeline}">
+
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title" th:text="${post.title}"></h5>
+					<p class="card-text" th:text="${post.body}"></p>
+					<p class="card-text" th:text="${post.description}"></p>
+					<div class="row">
+					
+					
+
+    </div>
+    <a th:href="@{'delete/' + ${post.id}}" ><button class="btn btn-danger">Delete</button></a>
+    
+					  <a th:href="@{'update/' + ${post.id}}" ><button class="btn btn-secondary">update</button></a>
+					   
+					    <a th:href="@{${post.id}+'/addcomment'}"  ><button class="btn btn-primary">Comment</button></a>
+					   
+					   <div th:each="comment:${post.comments}" class="card-body">
+
+                     <blockquote class="blockquote mb-0">
+
+                         <p th:text="${comment.commentMessage}"></p>
+
+                         <footer class="blockquote-footer" th:text="${comment.authorName}"></footer>
+
+                     </blockquote>
+
+                 </div>
+					<!--   <a th:href="@{'delete/'+${post.id}"><button class="btn btn-secondary">Delete</button></a> -->
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+
+</html>
